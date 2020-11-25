@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
+    <!--Definicion del nombre del mapeo y la asignacion de las variables y tabla--> 
     <class name="models.Oportunidad" table="oportunidad">
         <id column="id" name="id" type="integer" >
             <generator class="identity"/>
@@ -10,11 +11,11 @@
         <property name="fecha" type="date"/>
         <property name="nivel" type="string"/>
         <property name="estado" type="string"/>
-        
+        <!--Definicion de la relacion con el modelo contacto-->
         <many-to-one class="models.Contacto" name="contacto" fetch="select">
             <column name="id_cliente"></column>
         </many-to-one>
-        
+        <!--Definicion de la relacion con el modelo actividad-->
         <set table="actividad" name="actividades"  inverse="true">
             <key>
                 <column name="id_oportunidad"></column>

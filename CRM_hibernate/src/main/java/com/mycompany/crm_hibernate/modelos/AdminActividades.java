@@ -6,6 +6,7 @@
 package com.mycompany.crm_hibernate.modelos;
 
 import java.util.Date;
+import java.util.List;
 import models.Actividad;
 import models.Oportunidad;
 import org.hibernate.Session;
@@ -17,14 +18,17 @@ import org.hibernate.query.Query;
  * @author carlo
  */
 public class AdminActividades {
+//definicion de variables
 
     Session s;
     Transaction t;
+//Inicializador
 
     public AdminActividades(Session s) {
         this.s = s;
         this.t = null;
     }
+//metodo para crear una nueva instancia de actividad en la base de datos
 
     public void nuevaActividad(String descripcion, String tipo, Date fecha, int id_op) {
         comprobarTransaccion();
@@ -37,6 +41,7 @@ public class AdminActividades {
         s.save(ac);
         t.commit();
     }
+//metodo para editar todos los parametros de una actividad
 
     public void editarActividad(String descripcion, String tipo, int id, int id_op) {
         comprobarTransaccion();
@@ -48,6 +53,7 @@ public class AdminActividades {
         s.update(ac);
         t.commit();
     }
+//metodo para editar la descripcion de una actividad
 
     public void editarDescripcion(String descripcion, int id) {
         comprobarTransaccion();
@@ -56,6 +62,7 @@ public class AdminActividades {
         s.update(ac);
         t.commit();
     }
+//metodo para editar el tipo de una actividad
 
     public void editarTipo(String tipo, int id) {
         comprobarTransaccion();
@@ -64,6 +71,7 @@ public class AdminActividades {
         s.update(op);
         t.commit();
     }
+//metodo para editar la oportunidad asociada de una actividad
 
     public void editarOportunidad(int id_op, int id) {
         comprobarTransaccion();
@@ -73,6 +81,7 @@ public class AdminActividades {
         s.update(ac);
         t.commit();
     }
+//metodo para borrar una actividad
 
     public void borrarActividad(int id) {
         comprobarTransaccion();
@@ -85,10 +94,13 @@ public class AdminActividades {
         }
         t.commit();
     }
+//metodo para recoger todas las actividades de la base de datos
 
-    public void mostrarActividad() {
-
+    public List<Actividad> mostrarActividades() {
+        List<Actividad> Actividades = s.createQuery("from Actividad").list();
+        return Actividades;
     }
+//metodo para comprobar si la transaccion de hibernate esta abierta o no y activarla
 
     public void comprobarTransaccion() {
         if (t == null) {

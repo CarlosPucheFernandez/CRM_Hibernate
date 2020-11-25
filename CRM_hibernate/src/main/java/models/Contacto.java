@@ -1,4 +1,3 @@
-
 package models;
 
 import java.io.Serializable;
@@ -11,6 +10,7 @@ import java.util.Set;
  * @author Carlo
  */
 public class Contacto implements Serializable {
+//definicion de variables
 
     private Integer id;
     private String nombre;
@@ -20,18 +20,11 @@ public class Contacto implements Serializable {
     private String mail;
 
     private Set<models.Oportunidad> oportunidades;
+//constructor sin parametros
 
     public Contacto() {
     }
-
-    public Contacto(String email) {
-        this.nombre = "";
-        this.apellidos = "";
-        this.empresa = "";
-        this.telefono = "";
-        this.mail = email;
-        this.oportunidades = new HashSet(0);
-    }
+//constructor con parametros
 
     public Contacto(String nombre, String apellidos, String empresa, String telefono, String email) {
         this.nombre = nombre;
@@ -41,6 +34,7 @@ public class Contacto implements Serializable {
         this.mail = email;
         this.oportunidades = new HashSet(0);
     }
+//Getters y Setters
 
     public Integer getId() {
         return id;
@@ -97,15 +91,18 @@ public class Contacto implements Serializable {
     public void setOportunidades(Set<Oportunidad> oportunidades) {
         this.oportunidades = oportunidades;
     }
+//Formato de salida del objeto
 
     @Override
     public String toString() {
+        //      Establecimiento de formatos a los atributos
         String idf = String.format("%-5s", id);
         String nombref = String.format("%-12s", nombre);
         String apellidosf = String.format("%-20s", apellidos);
         String empresaf = String.format("%-23s", empresa);
         String telefonof = String.format("%-13s", telefono);
         String mailf = String.format("%-30s", mail);
+        //      Salida de los datos ya formateados
         return "»" + " Id:" + idf + " Nombre:" + nombref + " Apellidos:" + apellidosf + " Empresa:" + empresaf + " Telefono:" + telefonof + " E-mail:" + mailf;
     }
 

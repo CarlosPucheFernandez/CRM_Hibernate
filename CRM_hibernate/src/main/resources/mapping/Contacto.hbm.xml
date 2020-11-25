@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
+    <!--Definicion del nombre del mapeo y la asignacion de las variables y tabla--> 
     <class name="models.Contacto" table="contacto">
         <id column="id" name="id" type="integer" >
             <generator class="identity"/>
@@ -10,7 +11,7 @@
         <property name="empresa" type="string"/>
         <property name="telefono" type="string"/>
         <property name="mail" type="string"/>
-        
+        <!--Definicion de la relacion con el modelo Oportunidad-->
         <set table="oportunidad" name="oportunidades"  inverse="false">
             <key>
                 <column name="id_cliente"></column>

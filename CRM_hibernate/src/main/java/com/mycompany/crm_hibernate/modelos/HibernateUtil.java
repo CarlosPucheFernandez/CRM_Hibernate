@@ -9,22 +9,22 @@ import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-
 public class HibernateUtil {
+    //Incicializacion de Hibernate y configuracion
 
-  private static final SessionFactory sessionFactory;
-  
-  static {
-    try {
-      sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-    } catch (HibernateException ex) {
-      // Log the exception. 
-      System.err.println("Initial SessionFactory creation failed." + ex);
-      throw new ExceptionInInitializerError(ex);
+    private static final SessionFactory sessionFactory;
+
+    static {
+        try {
+            sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+        } catch (HibernateException ex) {
+            // Log the exception. 
+            System.err.println("Initial SessionFactory creation failed." + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
     }
-  }
-  
-  public static SessionFactory getSessionFactory() {
-    return sessionFactory;
-  }
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
 }
